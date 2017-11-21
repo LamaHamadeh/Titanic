@@ -52,11 +52,11 @@ Data = Data.drop(['Cabin', 'Embarked', 'Name'], axis = 1)
 #-------------
 #plot the sex of the passengers (categorical data)
 plt.figure(1)
-Data.Sex.value_counts().plot(kind='bar', color='#6878cc') #visualise the sex column of the data
+Data.Sex.value_counts().plot(kind='bar', color='#6878cc', edgecolor = '#6878cc') #visualise the sex column of the data
 
 #plot the distribution ofthe ticket fare (numerical data)
 plt.figure(2)
-Data.Fare.hist(color='#00B28C')
+Data.Fare.hist(color='#00B28C', edgecolor = '#00B28C')
 plt.xlabel('Ticket Fare')
 plt.ylabel('Number of People')
 
@@ -64,13 +64,13 @@ plt.ylabel('Number of People')
 Male_Survived = Data[Data.Sex =='male'].Survived.value_counts() #Survived male sub_dataset
 Female_Survived = Data[Data.Sex == 'female'].Survived.value_counts() #Survived female sub_dataset
 Children_Survived = Data[Data.Age < 15].Survived.value_counts() #Survived children sub_dataset
-#plt.figure(3)
 fig, axs = plt.subplots(1,3)
-Male_Survived.plot(kind='barh', color = '#024dce', title = 'Male Survivorship', ax = axs[0])
-Female_Survived.plot(kind = 'barh', color = '#df3fd0', title = 'Female Survivorship', ax = axs[1])
-Children_Survived.plot(kind = 'barh', color = '#e2e35d', title = 'Children (<15) Survivorship', ax = axs[2])
+Male_Survived.plot(kind='barh', color = '#024dce',  edgecolor = '#024dce', title = 'Male Survivorship', ax = axs[0])
+Female_Survived.plot(kind = 'barh', color = '#df3fd0', edgecolor = '#df3fd0', title = 'Female Survivorship', ax = axs[1])
+Children_Survived.plot(kind = 'barh', color = '#e2e35d', edgecolor = '#e2e35d', title = 'Children (<15) Survivorship', ax = axs[2])
                      
-#plot a kernel density estimate of the subset of the 1st, 2nd and 3rd class passenger's age
+
+#plot a kernel density estimate of the subset of the 1st class passenger's age
 plt.figure(4)
 Data.Age[Data.Pclass == 1].plot(kind = 'kde', color = 'red')
 Data.Age[Data.Pclass == 2].plot(kind = 'kde', color = 'blue')
@@ -78,5 +78,6 @@ Data.Age[Data.Pclass == 3].plot(kind = 'kde', color = 'green')
 plt.xlabel('Age')
 plt.ylabel('Density')
 plt.title('Age distribution Within Classes')
+
 plt.legend(('1st Class', '2nd Class', '3rd Class'), loc = 'best')
 plt.show()
