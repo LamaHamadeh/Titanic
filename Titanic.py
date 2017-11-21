@@ -13,11 +13,15 @@ import matplotlib.pyplot as plt
 #--------------------------
 Data = pd.read_csv('/Users/lamahamadeh/Desktop/Python/Titanic/train.csv')
 
+#================================
+#Exploratory Data Analysis (EDA)
+#================================
+
 #analyse the train data
 #-----------------------
 print(Data.head()) #take a look at the data
 print(Data.shape) #(891, 12)
-print(Data.describe())
+print(Data.describe()) #describe only shows the numerical data in the dataset
 
 #Checking the number/percentage of the survived passengers
 print(Data.Survived.value_counts()) #0:549  #1:342
@@ -36,6 +40,12 @@ def num_missing(x):
 print ("Missing values per column:")
 print (Data.apply(num_missing, axis=0)) #177 nans in the 'age' feature
 #and 687 nans in the 'cabin' feature. 
+
+#fill the 177 nans in the Age columns with the mean of age of the whole dataset.
+Data['Age'].fillna(Data.Age.mean(), inplace = True) 
+
+#drop the Cabin, Embarked and Name coloumns as they don't do any good for our dataset
+Data = Data.drop(['Cabin', 'Embarked', 'Name'], axis = 1)
 
 
 #Visulaisation
@@ -60,4 +70,14 @@ Female_Survived.plot(kind = 'barh', color = '#df3fd0', title = 'Female Survivors
 Children_Survived.plot(kind = 'barh', color = '#e2e35d', title = 'Children (<15) Survivorship', ax = axs[2])
                      
 
+#plot a kernel density estimate of the subset of the 1st, 2nd and 3rd class passenger's age
+plt.figure(4)
+Data.Age[Data.Pclass == 1].plot(kind = 'kde', color = 'red')
+Data.Age[Data.Pclass == 2].plot(kind = 'kde', color = 'blue')
+Data.Age[Data.Pclass == 3].plot(kind = 'kde', color = 'green')
+plt.xlabel('Age')
+plt.ylabel('Density')
+plt.title('Age distribution Within Classes')
 
+plt.legend(('1st Class', '2nd Class', '3rd Class'), loc = 'best')
+plt.show()
