@@ -69,7 +69,6 @@ Male_Survived.plot(kind='barh', color = '#024dce', title = 'Male Survivorship', 
 Female_Survived.plot(kind = 'barh', color = '#df3fd0', title = 'Female Survivorship', ax = axs[1])
 Children_Survived.plot(kind = 'barh', color = '#e2e35d', title = 'Children (<15) Survivorship', ax = axs[2])
                      
-
 #plot a kernel density estimate of the subset of the 1st, 2nd and 3rd class passenger's age
 plt.figure(4)
 Data.Age[Data.Pclass == 1].plot(kind = 'kde', color = 'red')
@@ -78,6 +77,5 @@ Data.Age[Data.Pclass == 3].plot(kind = 'kde', color = 'green')
 plt.xlabel('Age')
 plt.ylabel('Density')
 plt.title('Age distribution Within Classes')
-
 plt.legend(('1st Class', '2nd Class', '3rd Class'), loc = 'best')
 plt.show()
