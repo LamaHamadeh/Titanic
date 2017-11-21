@@ -64,6 +64,7 @@ plt.ylabel('Number of People')
 Male_Survived = Data[Data.Sex =='male'].Survived.value_counts() #Survived male sub_dataset
 Female_Survived = Data[Data.Sex == 'female'].Survived.value_counts() #Survived female sub_dataset
 Children_Survived = Data[Data.Age < 15].Survived.value_counts() #Survived children sub_dataset
+#plt.figure(3)
 fig, axs = plt.subplots(1,3)
 Male_Survived.plot(kind='barh', color = '#024dce', title = 'Male Survivorship', ax = axs[0])
 Female_Survived.plot(kind = 'barh', color = '#df3fd0', title = 'Female Survivorship', ax = axs[1])
