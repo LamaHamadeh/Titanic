@@ -78,6 +78,33 @@ Data.Age[Data.Pclass == 3].plot(kind = 'kde', color = 'green')
 plt.xlabel('Age')
 plt.ylabel('Density')
 plt.title('Age distribution Within Classes')
-
 plt.legend(('1st Class', '2nd Class', '3rd Class'), loc = 'best')
+
+#visulaise the distribution of the passengers's age 
+plt.figure(5)
+Data.Age.hist(color= '#C8515F', edgecolor = '#9f3e4a')
+plt.xlabel('Age')
+plt.ylabel('Count')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 plt.show()
