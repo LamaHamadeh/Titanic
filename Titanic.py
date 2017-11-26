@@ -168,8 +168,8 @@ Knn = KNeighborsClassifier(n_neighbors = 2)
 #train the data
 Knn.fit(X_train,Y_train)
 #test the accuracy of the data
-accuracy = Knn.score(X_test, Y_test)
-
+accuracy = Knn.score(X_test, Y_test) #the accuracy of the model is 66%
+#without the preprocessing the accuracy drops to 60%
 print('accuracy of the model is: ', accuracy)
 
 #import the test dataset
