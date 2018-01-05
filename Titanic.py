@@ -27,7 +27,6 @@ Data_train = pd.read_csv('/Users/lamahamadeh/Desktop/Python/Titanic/train.csv')
 #================================
 
 #analyse the train data
-#-----------------------
 print(Data_train.head()) #take a look at the data
 print(Data_train.shape) #(891, 12)
 print(Data_train.describe()) #describe only shows the numerical data in the dataset
@@ -53,9 +52,9 @@ print (Data_train.apply(num_missing, axis=0)) #177 nans in the 'age' feature
 #fill the 177 nans in the Age feature with the mean value of all ages
 #and 687 nans in the 'cabin' feature with 0
 Data_train['Age'].fillna(Data_train.Age.mean(), inplace = True)
+Data_train.drop(['Cabin', 'Ticket'], inplace = True, axis = 1)
 
 #Visulaisation
-#-------------
 #plot the sex of the passengers (categorical data)
 plt.figure(1)
 Data_train.Sex.value_counts().plot(kind='bar', color='#6878cc', edgecolor = '#6878cc') #visualise the sex column of the data
@@ -145,7 +144,7 @@ numeric_values_test = list(Data_test.dtypes[Data_test.dtypes != 'object'].index)
 
 print(Data_test[numeric_values_test].head())
 
-prediction = kmeans_model.predict(Data_test[numeric_values_test])
+#prediction = kmeans_model.predict(Data_test[numeric_values_test])
 
 
 
@@ -156,11 +155,12 @@ prediction = kmeans_model.predict(Data_test[numeric_values_test])
 numeric_values = list(Data_train.dtypes[Data_train.dtypes != 'object'].index)
 
 print(Data_train[numeric_values].head())
-
-X = np.array(Data_train[numeric_values].drop(['Survived'], axis=1))
 X = preprocessing.scale(X)
+X = np.array(Data_train[numeric_values].drop(['Survived'], axis=1))
+
 y = np.array(Data_train['Survived'])
 
+#cross_validation
 X_train, X_test, Y_train, Y_test = train_test_split (X, y, test_size=0.5, random_state = 7)
 
 #apply the knn method
@@ -170,6 +170,7 @@ Knn.fit(X_train,Y_train)
 #test the accuracy of the data
 accuracy = Knn.score(X_test, Y_test) #the accuracy of the model is 66%
 #without the preprocessing the accuracy drops to 60%
+
 print('accuracy of the model is: ', accuracy)
 
 #import the test dataset
@@ -193,6 +194,9 @@ print(Data_test[numeric_values_test].head())
 
 
 
+#==================================
+#Prediction using Linear regression
+#==================================
 
 
 
